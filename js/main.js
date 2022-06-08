@@ -1,20 +1,21 @@
-function getRandom(min, max) {
-    if (min >= max) { 
-        return null; 
-    }
+function getRandom (a, b) {
+  const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
+  const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
 
-    return Math.floor(Math.random() * (max - min)) + min;
+  const result = Math.random() * (upper - lower + 1) + lower;
+
+  return Math.floor(result);
 }
 
 getRandom();
 
-function getFractionRandom(min, max, floatNumber = 3) {
-        if (min >= max) { 
-            return null; 
-        }
+function getFractionRandom (a, b, digits = 5) {
+  const lower = Math.min(Math.abs(a), Math.abs(b));
+  const upper = Math.max(Math.abs(a), Math.abs(b));
 
-        const result = Math.random() * (max - min) + min;
-        return +result.toFixed(floatNumber);
-      }
+  const result = Math.random() * (upper - lower) + lower;
+
+  return +result.toFixed(digits);
+}
 
 getFractionRandom();
