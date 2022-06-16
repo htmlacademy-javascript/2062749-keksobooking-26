@@ -1,3 +1,5 @@
+const SIMILAR_OBJECT_COUNT = 10;
+
 const TYPES = [
   'palace',
   'flat',
@@ -42,17 +44,19 @@ const PICTURES = [
 
 const picturesNotUsed = [];
 
-function getRandomPositiveInteger (a, b) {
+function getRandomPositiveInteger(a, b) {
   const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
   const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
   const result = Math.random() * (upper - lower + 1) + lower;
+
   return Math.floor(result);
 }
 
-function getRandomPositiveFloat (a, b, digits = 5) {
+function getRandomPositiveFloat(a, b, digits = 5) {
   const lower = Math.min(Math.abs(a), Math.abs(b));
   const upper = Math.max(Math.abs(a), Math.abs(b));
   const result = Math.random() * (upper - lower) + lower;
+
   return +result.toFixed(digits);
 }
 
@@ -60,8 +64,8 @@ const getRandomArrayElement = (elements) =>
   elements [getRandomPositiveInteger(0, elements.length - 1)];
 
 const createObj = () => {
-  const randomLat = getRandomPositiveFloat(35.65000, 35.70000);
-  const randomLng = getRandomPositiveFloat(139.70000, 139.80000);
+  const lat = getRandomPositiveFloat(35.65000, 35.70000);
+  const lng = getRandomPositiveFloat(139.70000, 139.80000);
 
   return {
     author: {
@@ -69,47 +73,29 @@ const createObj = () => {
     },
     offer: {
       title: 'Объявление',
-      address: `${randomLat}, ${randomLng}`,
+      address: `${lat}, ${lng}`,
       price: getRandomPositiveInteger(0, 10),
       type: getRandomArrayElement(TYPES),
       rooms: getRandomPositiveInteger(0, 10),
       guests: getRandomPositiveInteger(0, 10),
       checkin: getRandomArrayElement(CHECKINS_CHECKOUTS),
       checkout: getRandomArrayElement(CHECKINS_CHECKOUTS),
-      features: [
-        getArray(FEATURES)
-      ],
+      features:
+        FEATURES.slice(0, getRandomPositiveInteger(1, FEATURES.length - 1)),
       description: 'Описание помещения',
-      photos: [
-        getArray(PHOTOS)
-      ],
+      photos:
+      PHOTOS.slice(0, getRandomPositiveInteger(1, PHOTOS.length - 1)),
     },
     location: {
-      lat: randomLat,
-      lng: randomLng,
+      lat,
+      lng,
     }
   };
 };
 
-
-function getArray (arr) {
-  const maxLength = arr.length;
-  const lengthOfArray = getRandomPositiveInteger(1, maxLength);
-  const array = [];
-
-  while (array.length < lengthOfArray) {
-    const indexOfEl = getRandomPositiveInteger(0, maxLength - 1);
-    const el = arr[indexOfEl];
-
-    if (!array.includes(el)) {
-      array.push(el);
-    }
-  }
-  return array;
-}
-
 function getRandomPicture() {
   if (picturesNotUsed.length === 0) {
+
     for (let i = 0; i < PICTURES.length; ++i) {
       picturesNotUsed.push(PICTURES[i]);
     }
@@ -122,9 +108,6 @@ function getRandomPicture() {
 
   return id;
 }
-
-
-const SIMILAR_OBJECT_COUNT = 10;
 
 const similarObjects = Array.from({length: SIMILAR_OBJECT_COUNT}, createObj);
 
