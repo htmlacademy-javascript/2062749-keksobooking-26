@@ -29,21 +29,6 @@ const PHOTOS = [
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg'
 ];
 
-const PICTURES = [
-  '01',
-  '02',
-  '03',
-  '04',
-  '05',
-  '06',
-  '07',
-  '08',
-  '09',
-  '10'
-];
-
-const picturesNotUsed = [];
-
 function getRandomPositiveInteger(a, b) {
   const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
   const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
@@ -63,13 +48,13 @@ function getRandomPositiveFloat(a, b, digits = 5) {
 const getRandomArrayElement = (elements) =>
   elements [getRandomPositiveInteger(0, elements.length - 1)];
 
-const createObj = () => {
+const createObj = (id) => {
   const lat = getRandomPositiveFloat(35.65000, 35.70000);
   const lng = getRandomPositiveFloat(139.70000, 139.80000);
 
   return {
     author: {
-      avatar: `img/avatars/user${getRandomPicture()}.png`
+      avatar: `img/avatars/user${String(id).padStart(2, '0')}.png`
     },
     offer: {
       title: 'Объявление',
@@ -93,22 +78,10 @@ const createObj = () => {
   };
 };
 
-function getRandomPicture() {
-  if (picturesNotUsed.length === 0) {
+const createAds = (SIMILAR_OBJECT_COUNT) => {
+    Array.from(
+      { length: SIMILAR_OBJECT_COUNT },
+        (_, index) => createObj(index));
+};
 
-    for (let i = 0; i < PICTURES.length; ++i) {
-      picturesNotUsed.push(PICTURES[i]);
-    }
-  }
-
-  const index = Math.floor(Math.random() * picturesNotUsed.length);
-  const id =  picturesNotUsed[index];
-
-  picturesNotUsed.splice(index, 1);
-
-  return id;
-}
-
-const similarObjects = Array.from({length: SIMILAR_OBJECT_COUNT}, createObj);
-
-similarObjects();
+createAds();
