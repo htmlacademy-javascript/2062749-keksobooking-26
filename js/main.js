@@ -94,7 +94,7 @@ const createObj = (id) => {
         FEATURES.slice(0, getRandomPositiveInteger(1, FEATURES.length)),
       description: 'Описание помещения',
       photos:
-      PHOTOS.slice(0, getRandomPositiveInteger(1, PHOTOS.length )),
+      PHOTOS.slice(0, getRandomPositiveInteger(1, PHOTOS.length)),
     },
     location: {
       lat,
@@ -109,4 +109,4 @@ const createAds = (amount) =>
         (_, index) => createObj(index));
 
 
-createAds(MAX_ADS_COUNT)
+createAds(MAX_ADS_COUNT);
