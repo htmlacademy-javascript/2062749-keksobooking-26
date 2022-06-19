@@ -1,4 +1,4 @@
-const SIMILAR_OBJECT_COUNT = 10;
+const MAX_ADS_COUNT = 10;
 
 const TYPES = [
   'palace',
@@ -29,6 +29,31 @@ const PHOTOS = [
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg'
 ];
 
+const latitude = {
+min: 35.65000,
+max: 35.70000,
+};
+
+const longitude = {
+min: 139.70000,
+max: 139.80000,
+};
+
+const price = {
+min: 0,
+max: 10,
+};
+
+const rooms = {
+min: 0,
+max: 10,
+};
+
+const guests = {
+min: 0,
+max: 10,
+};
+
 function getRandomPositiveInteger(a, b) {
   const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
   const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
@@ -49,8 +74,8 @@ const getRandomArrayElement = (elements) =>
   elements [getRandomPositiveInteger(0, elements.length - 1)];
 
 const createObj = (id) => {
-  const lat = getRandomPositiveFloat(35.65000, 35.70000);
-  const lng = getRandomPositiveFloat(139.70000, 139.80000);
+  const lat = getRandomPositiveFloat(latitude.min, latitude.max);
+  const lng = getRandomPositiveFloat(longitude.min, longitude.max);
 
   return {
     author: {
@@ -59,17 +84,17 @@ const createObj = (id) => {
     offer: {
       title: 'Объявление',
       address: `${lat}, ${lng}`,
-      price: getRandomPositiveInteger(0, 10),
+      price: getRandomPositiveInteger(price.min, price.max),
       type: getRandomArrayElement(TYPES),
-      rooms: getRandomPositiveInteger(0, 10),
-      guests: getRandomPositiveInteger(0, 10),
+      rooms: getRandomPositiveInteger(rooms.min, rooms.max),
+      guests: getRandomPositiveInteger(guests.min, guests.max),
       checkin: getRandomArrayElement(CHECKINS_CHECKOUTS),
       checkout: getRandomArrayElement(CHECKINS_CHECKOUTS),
       features:
-        FEATURES.slice(0, getRandomPositiveInteger(1, FEATURES.length - 1)),
+        FEATURES.slice(0, getRandomPositiveInteger(1, FEATURES.length)),
       description: 'Описание помещения',
       photos:
-      PHOTOS.slice(0, getRandomPositiveInteger(1, PHOTOS.length - 1)),
+      PHOTOS.slice(0, getRandomPositiveInteger(1, PHOTOS.length )),
     },
     location: {
       lat,
@@ -78,10 +103,10 @@ const createObj = (id) => {
   };
 };
 
-const createAds = (SIMILAR_OBJECT_COUNT) => {
+const createAds = (amount) => 
     Array.from(
-      { length: SIMILAR_OBJECT_COUNT },
+      { length: amount },
         (_, index) => createObj(index));
-};
 
-createAds();
+
+createAds(MAX_ADS_COUNT)
