@@ -54,28 +54,34 @@ min: 0,
 max: 10,
 };
 
-function getRandomPositiveInteger(a, b) {
+function getRandom (a, b) {
   const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
   const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
+  
   const result = Math.random() * (upper - lower + 1) + lower;
 
   return Math.floor(result);
 }
 
-function getRandomPositiveFloat(a, b, digits = 5) {
+getRandom();
+
+function getFractionRandom (a, b, digits = 5) {
   const lower = Math.min(Math.abs(a), Math.abs(b));
   const upper = Math.max(Math.abs(a), Math.abs(b));
+  
   const result = Math.random() * (upper - lower) + lower;
 
   return +result.toFixed(digits);
 }
 
+getFractionRandom();
+
 const getRandomArrayElement = (elements) =>
-  elements [getRandomPositiveInteger(0, elements.length - 1)];
+  elements [getRandom(0, elements.length - 1)];
 
 const createObj = (id) => {
-  const lat = getRandomPositiveFloat(latitude.min, latitude.max);
-  const lng = getRandomPositiveFloat(longitude.min, longitude.max);
+  const lat = getFractionRandom(latitude.min, latitude.max);
+  const lng = getFractionRandom(longitude.min, longitude.max);
 
   return {
     author: {
@@ -84,17 +90,17 @@ const createObj = (id) => {
     offer: {
       title: 'Объявление',
       address: `${lat}, ${lng}`,
-      price: getRandomPositiveInteger(price.min, price.max),
+      price: getRandom(price.min, price.max),
       type: getRandomArrayElement(TYPES),
-      rooms: getRandomPositiveInteger(rooms.min, rooms.max),
-      guests: getRandomPositiveInteger(guests.min, guests.max),
+      rooms: getRandom(rooms.min, rooms.max),
+      guests: getRandom(guests.min, guests.max),
       checkin: getRandomArrayElement(CHECKINS_CHECKOUTS),
       checkout: getRandomArrayElement(CHECKINS_CHECKOUTS),
       features:
-        FEATURES.slice(0, getRandomPositiveInteger(1, FEATURES.length)),
+        FEATURES.slice(0, getRandom(1, FEATURES.length)),
       description: 'Описание помещения',
       photos:
-      PHOTOS.slice(0, getRandomPositiveInteger(1, PHOTOS.length)),
+      PHOTOS.slice(0, getRandom(1, PHOTOS.length)),
     },
     location: {
       lat,
