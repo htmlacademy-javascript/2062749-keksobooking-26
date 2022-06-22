@@ -54,7 +54,7 @@ const guests = {
   max: 10,
 };
 
-function getRandom (a, b) {
+function getRandom(a, b) {
   const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
   const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
 
@@ -65,7 +65,7 @@ function getRandom (a, b) {
 
 getRandom();
 
-function getFractionRandom (a, b, digits = 5) {
+function getFractionRandom(a, b, digits = 5) {
   const lower = Math.min(Math.abs(a), Math.abs(b));
   const upper = Math.max(Math.abs(a), Math.abs(b));
 
@@ -77,7 +77,7 @@ function getFractionRandom (a, b, digits = 5) {
 getFractionRandom();
 
 const getRandomArrayElement = (elements) =>
-  elements [getRandom(0, elements.length - 1)];
+  elements[getRandom(0, elements.length - 1)];
 
 const createObj = (id) => {
   const lat = getFractionRandom(latitude.min, latitude.max);
@@ -100,7 +100,7 @@ const createObj = (id) => {
         FEATURES.slice(0, getRandom(1, FEATURES.length)),
       description: 'Описание помещения',
       photos:
-      PHOTOS.slice(0, getRandom(1, PHOTOS.length)),
+        PHOTOS.slice(0, getRandom(1, PHOTOS.length)),
     },
     location: {
       lat,
