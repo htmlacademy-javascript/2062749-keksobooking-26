@@ -1,4 +1,4 @@
-import {getRandom, getFractionRandom, getRandomArrayElement} from './util.js';
+import { getRandom, getFractionRandom, getRandomArrayElement } from './util.js';
 
 const MAX_ADS_COUNT = 10;
 
@@ -32,28 +32,28 @@ const PHOTOS = [
 ];
 
 const latitude = {
-min: 35.65000,
-max: 35.70000,
+  min: 35.65000,
+  max: 35.70000,
 };
 
 const longitude = {
-min: 139.70000,
-max: 139.80000,
+  min: 139.70000,
+  max: 139.80000,
 };
 
 const price = {
-min: 0,
-max: 10,
+  min: 0,
+  max: 10,
 };
 
 const rooms = {
-min: 0,
-max: 10,
+  min: 0,
+  max: 10,
 };
 
 const guests = {
-min: 0,
-max: 10,
+  min: 0,
+  max: 10,
 };
 
 const createObj = (id) => {
@@ -77,7 +77,7 @@ const createObj = (id) => {
         FEATURES.slice(0, getRandom(1, FEATURES.length)),
       description: 'Описание помещения',
       photos:
-      PHOTOS.slice(0, getRandom(1, PHOTOS.length)),
+        PHOTOS.slice(0, getRandom(1, PHOTOS.length)),
     },
     location: {
       lat,
@@ -86,10 +86,10 @@ const createObj = (id) => {
   };
 };
 
-const createAds = (amount) => 
-    Array.from(
-      { length: amount },
-        (_, index) => createObj(index));
+const createAds = (amount) =>
+  Array.from(
+    { length: amount },
+    (_, index) => createObj(index));
 
 
 createAds(MAX_ADS_COUNT);

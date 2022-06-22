@@ -1,4 +1,4 @@
-function getRandom (a, b) {
+function getRandom(a, b) {
   const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
   const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
 
@@ -9,7 +9,7 @@ function getRandom (a, b) {
 
 getRandom();
 
-function getFractionRandom (a, b, digits = 5) {
+function getFractionRandom(a, b, digits = 5) {
   const lower = Math.min(Math.abs(a), Math.abs(b));
   const upper = Math.max(Math.abs(a), Math.abs(b));
 
@@ -19,8 +19,8 @@ function getFractionRandom (a, b, digits = 5) {
 }
 
 getFractionRandom();
-  
-  const getRandomArrayElement = (elements) =>
-    elements [getRandom(0, elements.length - 1)];
-  
-export {getRandom, getFractionRandom, getRandomArrayElement};
+
+const getRandomArrayElement = (elements) =>
+  elements[getRandom(0, elements.length - 1)];
+
+export { getRandom, getFractionRandom, getRandomArrayElement };
