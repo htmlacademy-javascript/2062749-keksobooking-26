@@ -1,4 +1,4 @@
-import {getRandomPositiveInteger, getRandomPositiveFloat, getRandomArrayElement} from './util.js';
+import {getRandom, getFractionRandom, getRandomArrayElement} from './util.js';
 
 const MAX_ADS_COUNT = 10;
 
@@ -57,8 +57,8 @@ max: 10,
 };
 
 const createObj = (id) => {
-  const lat = getRandomPositiveFloat(latitude.min, latitude.max);
-  const lng = getRandomPositiveFloat(longitude.min, longitude.max);
+  const lat = getFractionRandom(latitude.min, latitude.max);
+  const lng = getFractionRandom(longitude.min, longitude.max);
 
   return {
     author: {
@@ -67,17 +67,17 @@ const createObj = (id) => {
     offer: {
       title: 'Объявление',
       address: `${lat}, ${lng}`,
-      price: getRandomPositiveInteger(price.min, price.max),
+      price: getRandom(price.min, price.max),
       type: getRandomArrayElement(TYPES),
-      rooms: getRandomPositiveInteger(rooms.min, rooms.max),
-      guests: getRandomPositiveInteger(guests.min, guests.max),
+      rooms: getRandom(rooms.min, rooms.max),
+      guests: getRandom(guests.min, guests.max),
       checkin: getRandomArrayElement(CHECKINS_CHECKOUTS),
       checkout: getRandomArrayElement(CHECKINS_CHECKOUTS),
       features:
-        FEATURES.slice(0, getRandomPositiveInteger(1, FEATURES.length)),
+        FEATURES.slice(0, getRandom(1, FEATURES.length)),
       description: 'Описание помещения',
       photos:
-      PHOTOS.slice(0, getRandomPositiveInteger(1, PHOTOS.length)),
+      PHOTOS.slice(0, getRandom(1, PHOTOS.length)),
     },
     location: {
       lat,
