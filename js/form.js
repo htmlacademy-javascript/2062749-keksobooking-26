@@ -38,4 +38,8 @@ const activatePage = () => {
 
 activatePage ();
 
-export { disablePage, activatePage };
+export {
+  adForm,
+  disablePage,
+  activatePage
+};
