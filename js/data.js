@@ -92,4 +92,6 @@ const createAds = (amount) =>
     (_, index) => createObj(index));
 
 
-createAds(MAX_ADS_COUNT);
+const offers = createAds(MAX_ADS_COUNT);
+
+export {offers};
