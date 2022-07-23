@@ -124,3 +124,4 @@ noUiSlider.create(priceSlider, {
 priceSlider.noUiSlider.on('update', () => {
   price.value = priceSlider.noUiSlider.get();
 });
+
