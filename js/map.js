@@ -1,5 +1,6 @@
+
 import {unlockForm} from './form-activation.js';
-import {insertOffer} from './card.js';
+import {insertOffer} from './popup.js';
 
 const resetButton = document.querySelector('.ad-form__reset');
 const addressValue = document.querySelector('#address');
