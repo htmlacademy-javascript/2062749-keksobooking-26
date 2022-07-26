@@ -1,6 +1,6 @@
 
 import {unlockForm} from './form-activation.js';
-import {insertOffer} from './popup.js';
+import {SearchOffer} from './card.js';
 
 const resetButton = document.querySelector('.ad-form__reset');
 const addressValue = document.querySelector('#address');
@@ -79,7 +79,7 @@ const createMarker = (offer) => {
     icon: pinIcon,
   });
 
-  marker.addTo(map).bindPopup(insertOffer(offer));
+  marker.addTo(map).bindPopup(SearchOffer(offer));
   return marker;
 };
 

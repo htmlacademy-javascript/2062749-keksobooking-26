@@ -9,40 +9,22 @@ const typeOfHousing = {
   hotel: 'Отель'
 };
 
-function insertOffer (offer) {
+function SearchOffer(offer) {
   const offerElement = template.cloneNode(true);
 
   const availableFeatures = offer.offer.features;
   const featureContainer = offerElement.querySelector('.popup__features');
   const featureList = featureContainer.querySelectorAll('.popup__feature');
 
-  const availablePhotos = offer.offer.photos;
-  const photoContainer = offerElement.querySelector('.popup__photos');
-  const photolist = photoContainer.querySelector('.popup__photo');
-
-  if (!availablePhotos) {
-    photolist.remove();
-  } else {
-    photolist.remove();
-    availablePhotos.forEach((picture) => {
-      const photoClone = photolist.cloneNode();
-      photoClone.src = picture;
-      photoClone.width = 45;
-      photoClone.height = 40;
-      photoClone.alt = 'Фотография жилья';
-      photoContainer.appendChild(photoClone);
-    });
-  }
-
   if (!availableFeatures) {
     featureContainer.remove();
   } else {
-    featureList.forEach((popupFeatureItem)=>{
-      const isReal = availableFeatures.some((feature)=> popupFeatureItem.classList.contains(`popup__feature--${feature}`));
-      if (!isReal){
+    featureList.forEach((popupFeatureItem) => {
+      const isReal = availableFeatures.some((feature) => popupFeatureItem.classList.contains(`popup__feature--${feature}`));
+      if (!isReal) {
         popupFeatureItem.remove();
       }
-      if(!availableFeatures.length){
+      if (!availableFeatures.length) {
         featureContainer.classList.add('hidden');
       }
     });
@@ -62,4 +44,4 @@ function insertOffer (offer) {
   return offerElement;
 }
 
-export {insertOffer};
+export { SearchOffer };
