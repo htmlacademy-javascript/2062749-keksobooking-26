@@ -1,6 +1,6 @@
+
 import {unlockForm} from './form-activation.js';
-import {insertOffer} from './card.js';
-import {offers} from './data.js';
+import {SearchOffer} from './card.js';
 
 const resetButton = document.querySelector('.ad-form__reset');
 const addressValue = document.querySelector('#address');
@@ -70,7 +70,7 @@ resetButton.addEventListener('click', () => {
   }, defaultScale);
 });
 
-offers.forEach((offer)=>{
+const createMarker = (offer) => {
   const marker = L.marker({
     lat: offer.location.lat,
     lng: offer.location.lng
@@ -79,5 +79,14 @@ offers.forEach((offer)=>{
     icon: pinIcon,
   });
 
-  marker.addTo(map).bindPopup(insertOffer(offer));
-});
+  marker.addTo(map).bindPopup(SearchOffer(offer));
+  return marker;
+};
+
+const renderCards = (elements) => {
+  elements.forEach((element) => {
+    createMarker(element);
+  });
+};
+
+export {renderCards};

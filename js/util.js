@@ -1,22 +1,17 @@
-function getRandom(a, b) {
-  const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
-  const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
+const alertContainer = document.querySelector('#alert').content.querySelector('.alert');
 
-  const result = Math.random() * (upper - lower + 1) + lower;
+const ALERT_SHOW_TIME = 5000;
 
-  return Math.floor(result);
-}
+const showAlert = (message) => {
+  const alertElement = alertContainer.cloneNode(true);
 
-function getFractionRandom(a, b, digits = 5) {
-  const lower = Math.min(Math.abs(a), Math.abs(b));
-  const upper = Math.max(Math.abs(a), Math.abs(b));
+  alertElement.textContent = message;
 
-  const result = Math.random() * (upper - lower) + lower;
+  document.body.append(alertElement);
 
-  return +result.toFixed(digits);
-}
+  setTimeout(() => {
+    alertElement.remove();
+  }, ALERT_SHOW_TIME);
+};
 
-const getRandomArrayElement = (elements) =>
-  elements[getRandom(0, elements.length - 1)];
-
-export { getRandom, getFractionRandom, getRandomArrayElement };
+export {showAlert};
